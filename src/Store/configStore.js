@@ -20,7 +20,7 @@ export default function configureStore(initialState, url = '/') {
 	);
 
 	const state = { ...initialState };
-	const store = createStore(allReducers, state, enhancer);
+	const store = createStore(allReducers(history), state, enhancer);
 
 	return { store, history };
 }
