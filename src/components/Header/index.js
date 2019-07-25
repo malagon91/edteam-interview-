@@ -1,9 +1,9 @@
 import React from 'react';
-import { HeaderStyles } from './styles';
-
+import { HeaderStyles, ImgStyles } from './styles';
+import logo from '../../imgs/logoEDteam.svg';
 export const Header = () => (
 	<HeaderStyles>
-		Header
-		<p>Lorem ipsum dolo</p>
+		<ImgStyles src={logo} />
+		<h1>BIENVENIDOS A MI ENTREVISTA</h1>
 	</HeaderStyles>
 );

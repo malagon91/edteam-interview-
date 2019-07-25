@@ -1,12 +1,13 @@
 import React from 'react';
-import { FooterStyles } from './styles';
+import { FooterStyles, LinkEmail } from './styles';
 
 export const Footer = () => (
 	<FooterStyles>
-		Footer
-		<p>
-			Esse enim quam vellet iniquus iustus poterat inpune. Tu enim ista lenius,
-			hic Stoicorum more nos vexat. Duo Reges: constructio interrete.
-		</p>
+		<h2>Miguel Malagon</h2>
+		<h2>
+			<LinkEmail target="_blank" href="mailto: miguelmalagon@outlook.com">
+				miguelmalagon@outlook.com
+			</LinkEmail>
+		</h2>
 	</FooterStyles>
 );

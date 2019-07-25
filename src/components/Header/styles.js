@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
 export const HeaderStyles = styled.header`
-	background: #03a9f4;
+	background: white;
+	color: black;
+`;
+
+export const ImgStyles = styled.img`
+	height: 2rem;
+	width: auto;
+	display: block;
 `;
