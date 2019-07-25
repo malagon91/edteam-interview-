@@ -3,7 +3,8 @@ import './App.css';
 import { Info } from './components/Info';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
-import { Routes } from './Routes';
+import { Content } from './components/Content';
+
 function App() {
 	return (
 		<div className="App">
@@ -11,7 +12,7 @@ function App() {
 				Main
 				<Header />
 				<Info />
-				<Routes />
+				<Content />
 				<Footer />
 			</main>
 		</div>
