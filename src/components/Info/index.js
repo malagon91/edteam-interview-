@@ -3,10 +3,9 @@ import { Sectionstyles } from './styles';
 
 export const Info = () => (
 	<Sectionstyles>
-		Hero
+		<h2>INFORMACION</h2>
 		<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sumenda potius
-			quam expetenda. Nihil opus est exemplis hoc facere longius.
+			ESTE PROYECTO SE REALIZO COMO PARTE DEL PROCESO DE SELECCION EN EDTEAM
 		</p>
 	</Sectionstyles>
 );
