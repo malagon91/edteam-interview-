@@ -1,5 +1,6 @@
 import Api from '../Api';
 import toastr from 'toastr';
+import idx from 'idx';
 import { INIT_LOAD, GET_POSTS, ERROR_LOAD } from './ActionTypes';
 const optionsTo = {
 	progressBar: true,
@@ -14,8 +15,8 @@ export const getPosts = () => {
 	return async dispatch => {
 		try {
 			dispatch(initLoad());
-			const data = await Api.get('posts');
-			dispatch(setPosts(data));
+			const response = await Api.get('posts');
+			dispatch(setPosts(idx(response, _ => _.data) || []));
 		} catch (e) {
 			dispatch(setError(e));
 			toastr.error(

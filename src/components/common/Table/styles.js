@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const TableStyles = styled.div`
+export const TableStyles = styled('div')`
 	box-sizing: border-box;
 
 	display: block;
@@ -9,7 +9,7 @@ export const TableStyles = styled.div`
 	max-width: 600px;
 `;
 
-export const TableHeaderStyles = styled.div`
+export const TableHeaderStyles = styled('div')`
 	box-sizing: border-box;
 	display: flex;
 	flex-flow: row wrap;
@@ -19,7 +19,7 @@ export const TableHeaderStyles = styled.div`
 	border-left: solid 1px #1565c0;
 `;
 
-export const RowHeaderStyles = styled.div`
+export const RowHeaderStyles = styled('div')`
 	box-sizing: border-box;
 	background: #1976d2;
 	color: white;
@@ -39,7 +39,7 @@ export const RowHeaderStyles = styled.div`
 	}
 `;
 
-export const RowStyles = styled.div`
+export const RowStyles = styled('div')`
 	box-sizing: border-box;
 	box-sizing: border-box;
 	display: flex;
@@ -51,7 +51,7 @@ export const RowStyles = styled.div`
 		transition: 500ms;
 	}
 `;
-export const ColumnStyles = styled.div`
+export const ColumnStyles = styled('div')`
 	box-sizing: border-box;
 	width: calc(100% / 4);
 	text-align: center;

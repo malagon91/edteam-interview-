@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const FooterStyles = styled.footer`
+export const FooterStyles = styled('footer')`
 	background: #2a3b47;
 	color: #00cbff;
 	text-align: center;
@@ -9,7 +9,7 @@ export const FooterStyles = styled.footer`
 	}
 `;
 
-export const LinkEmail = styled.a`
+export const LinkEmail = styled('a')`
 	color: #00cbff;
 	text-decoration: none;
 `;
