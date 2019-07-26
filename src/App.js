@@ -2,18 +2,17 @@ import React from 'react';
 import './App.css';
 import { Info } from './components/Info';
 import { Header } from './components/Header';
-import { Footer } from './components/Footer';
+import { MyInfo } from './components/MyInfo';
 import { Content } from './components/Content';
 
 function App() {
 	return (
 		<div className="App">
 			<main>
-				Main
+				<MyInfo />
 				<Header />
 				<Info />
 				<Content />
-				<Footer />
 			</main>
 		</div>
 	);

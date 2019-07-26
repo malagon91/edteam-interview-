@@ -4,6 +4,7 @@ import { PostStyles } from './styles';
 import { Table } from '../common/Table';
 import { getPosts } from '../../Actions/Posts';
 import { Loading } from '../common/Loading';
+import { Waypoint } from 'react-waypoint';
 
 export const Posts = () => {
 	const dispatch = useDispatch();
