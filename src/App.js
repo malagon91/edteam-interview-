@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import '../node_modules/toastr/build/toastr.min.css';
 import { Info } from './components/Info';
 import { Header } from './components/Header';
 import { MyInfo } from './components/MyInfo';

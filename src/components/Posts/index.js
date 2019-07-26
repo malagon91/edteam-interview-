@@ -5,6 +5,7 @@ import { Table } from '../common/Table';
 import { getPosts } from '../../Actions/Posts';
 import { Loading } from '../common/Loading';
 import { Waypoint } from 'react-waypoint';
+import { Add } from '../common/Add';
 
 export const Posts = () => {
 	const [items, setItems] = useState(10);
@@ -20,6 +21,8 @@ export const Posts = () => {
 			.slice(0, items)
 			.map(({ id, name, title, body }) => ({ id, user: name, title, body }));
 
+	const newPost = () => {};
+
 	useEffect(() => {
 		dispatch(getPosts());
 	}, []);
@@ -28,6 +31,7 @@ export const Posts = () => {
 		<PostStyles>
 			<h3>POSTS</h3>
 			{loading ? <Loading /> : <Table data={loadPost()} />}
+			<Add title={'Agregar Post'} disabled={false} onClick={newPost} />
 			<Waypoint onLeave={loadMore} />
 		</PostStyles>
 	);

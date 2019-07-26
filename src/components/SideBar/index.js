@@ -19,20 +19,6 @@ export const SideBar = () => {
 			>
 				→ Posts
 			</AnchorStyles>
-			<AnchorStyles
-				onClick={() => {
-					goTo('/user');
-				}}
-			>
-				→ Users
-			</AnchorStyles>
-			<AnchorStyles
-				onClick={() => {
-					goTo('/photos');
-				}}
-			>
-				→ Photos
-			</AnchorStyles>
 		</SideBarStyles>
 	);
 };
