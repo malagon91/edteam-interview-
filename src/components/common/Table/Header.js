@@ -1,11 +1,10 @@
 import React from 'react';
 import { TableHeaderStyles } from './styles';
 import { RowHeader } from './RowHeader';
-export const TableHeader = () => (
+export const TableHeader = ({ headers }) => (
 	<TableHeaderStyles>
-		<RowHeader>Country</RowHeader>
-		<RowHeader>Events</RowHeader>
-		<RowHeader>Time</RowHeader>
-		<RowHeader>Fees</RowHeader>
+		{headers.map((header, index) => (
+			<RowHeader key={index}>{header}</RowHeader>
+		))}
 	</TableHeaderStyles>
 );
