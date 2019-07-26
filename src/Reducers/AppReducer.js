@@ -6,9 +6,9 @@ export default function(state = initialState, action) {
 		case INIT_LOAD:
 			return { ...state, loading: true };
 		case GET_POSTS:
-			return { ...state, posts: action.payload };
+			return { ...state, posts: action.payload, loading: false };
 		case ERROR_LOAD:
-			return { ...state, error: action.payload };
+			return { ...state, error: action.payload, loading: false };
 		default:
 			return state;
 	}
