@@ -12,11 +12,13 @@ export const Posts = () => {
 	const { loading, posts } = useSelector(selector);
 
 	const loadMore = () => {
-		console.log('scroll');
 		setItems(items + 10);
 	};
 
-	const loadPost = () => posts.slice(0, items);
+	const loadPost = () =>
+		posts
+			.slice(0, items)
+			.map(({ id, name, title, body }) => ({ id, user: name, title, body }));
 
 	useEffect(() => {
 		dispatch(getPosts());
