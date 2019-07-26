@@ -12,7 +12,7 @@ const formData = {
 	active: false,
 	header: '',
 	post: 0,
-	user: 0,
+	user: null,
 	title: '',
 	body: ''
 };
@@ -21,7 +21,7 @@ export const Posts = () => {
 	const [items, setItems] = useState(10);
 	const [form, setForm] = useState(formData);
 	const dispatch = useDispatch();
-	const { loading, posts } = useSelector(selector);
+	const { loading, posts, users } = useSelector(selector);
 
 	const loadMore = () => {
 		setItems(items + 10);
@@ -41,13 +41,29 @@ export const Posts = () => {
 		setForm(newForm);
 	};
 
+	const changeSelect = ({ value }) => {
+		const newForm = { ...form, user: value };
+		console.log(newForm);
+		setForm(newForm);
+	};
+
+	const getUsers = () =>
+		users.map(user => ({ value: user.id, label: user.name }));
+
 	useEffect(() => {
 		dispatch(getPosts());
 	}, []);
 
 	return (
 		<PostStyles>
-			{form.active && <Form data={form} onChange={onChange} />}
+			{form.active && (
+				<Form
+					data={form}
+					onChange={onChange}
+					changeSelect={changeSelect}
+					users={getUsers()}
+				/>
+			)}
 			<h3>POSTS</h3>
 			{loading ? <Loading /> : <Table data={loadPost()} />}
 			<Add title={'Agregar Post'} disabled={form.active} onClick={newPost} />
@@ -56,7 +72,8 @@ export const Posts = () => {
 	);
 };
 
-const selector = ({ App: { loading, posts } }) => ({
+const selector = ({ App: { loading, posts, users } }) => ({
 	loading,
-	posts
+	posts,
+	users
 });

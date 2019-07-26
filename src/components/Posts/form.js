@@ -1,4 +1,5 @@
 import React from 'react';
+import Select from 'react-select';
 import {
 	FormStyles,
 	ColFormStyles,
@@ -9,7 +10,9 @@ import {
 
 export const Form = ({
 	data: { header, title, user, post, body },
-	onChange
+	onChange,
+	changeSelect,
+	users
 }) => (
 	<FormStyles>
 		<h3>{header}</h3>
@@ -26,11 +29,11 @@ export const Form = ({
 			</ColFormStyles>
 			<ColFormStyles>
 				<label>Usuario</label>
-				<input type="text" name="user" onChange={onChange} value={user} />
+				<Select value={user} onChange={changeSelect} options={users} />
 			</ColFormStyles>
 		</RowFormStyles>
 		<RowFormStyles>
-			<ColFormStyles title>
+			<ColFormStyles>
 				<label>Titulo</label>
 
 				<input type="text" name="title" onChange={onChange} value={title} />

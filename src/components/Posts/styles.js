@@ -18,7 +18,6 @@ export const ColFormStyles = styled('div')`
 	margin: 15px;
 	display: block;
 	float: left;
-	padding-top: ${props => (props.title ? '33px' : '0')};
 	label {
 		margin-right: ${props => (props.post ? '21px' : '15px')};
 	}
