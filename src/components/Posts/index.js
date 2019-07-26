@@ -7,7 +7,10 @@ import { Loading } from '../common/Loading';
 
 export const Posts = () => {
 	const dispatch = useDispatch();
-	const { loading } = useSelector(({ App: { loading } }) => ({ loading }));
+	const { loading, posts } = useSelector(({ App: { loading, posts } }) => ({
+		loading,
+		posts
+	}));
 
 	useEffect(() => {
 		dispatch(getPosts());
@@ -16,7 +19,7 @@ export const Posts = () => {
 	return (
 		<PostStyles>
 			<h3>POSTS</h3>
-			{loading ? <Loading /> : <Table />}
+			{loading ? <Loading /> : <Table data={posts} />}
 		</PostStyles>
 	);
 };
