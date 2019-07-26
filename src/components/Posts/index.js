@@ -7,15 +7,12 @@ import { Loading } from '../common/Loading';
 
 export const Posts = () => {
 	const dispatch = useDispatch();
-	const { loading, posts } = useSelector(({ App: { loading, posts } }) => ({
-		loading,
-		posts
-	}));
+	const { loading, posts } = useSelector(selector);
 
 	useEffect(() => {
 		dispatch(getPosts());
 	}, []);
-	console.log(loading);
+
 	return (
 		<PostStyles>
 			<h3>POSTS</h3>
@@ -23,3 +20,8 @@ export const Posts = () => {
 		</PostStyles>
 	);
 };
+
+const selector = ({ App: { loading, posts } }) => ({
+	loading,
+	posts
+});
