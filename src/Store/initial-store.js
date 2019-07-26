@@ -1,3 +1,5 @@
 export default {
-	data: {}
+	posts: [],
+	loading: false,
+	error: {}
 };
