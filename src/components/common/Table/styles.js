@@ -4,9 +4,8 @@ export const TableStyles = styled('div')`
 	box-sizing: border-box;
 
 	display: block;
-	margin: 2em auto;
 	width: 90%;
-	max-width: 600px;
+	max-width: 1080px;
 `;
 
 export const TableHeaderStyles = styled('div')`
