@@ -35,11 +35,15 @@ export const Posts = () => {
 	const [form, setForm] = useState(formData);
 	const dispatch = useDispatch();
 	const { loading, posts, users } = useSelector(selector);
-
+	/*
+		Funcion para cargar mas posts con waipoint
+	 */
 	const loadMore = () => {
 		setItems(items + 10);
 	};
-
+	/*
+        Funcion para cambiar el modelo al actualizar un item
+     */
 	const onUpdate = ({ id, title, body }) => {
 		window.scrollTo(0, 0);
 		const { userId } = idx(posts.filter(pos => pos.id === id), _ => _[0]) || {};
@@ -54,7 +58,9 @@ export const Posts = () => {
 		};
 		setForm({ ...form, active: true, header: 'Actualiza el Post', ...model });
 	};
-
+	/*
+    	Funcion para manejar el eliminar de un item
+ 	*/
 	const onDelete = ({ id }) => {
 		confirmAlert({
 			title: 'Eliminar el post',
@@ -74,7 +80,9 @@ export const Posts = () => {
 			]
 		});
 	};
-
+	/*
+   	 	Funcion para regresar los botones de actualizar y eliminar en cada item de la tabla
+ 	*/
 	const getButtons = item => (
 		<ActionButtonsStyles>
 			<button className="update" onClick={() => onUpdate(item)}>
@@ -85,7 +93,9 @@ export const Posts = () => {
 			</button>
 		</ActionButtonsStyles>
 	);
-
+	/*
+    	Carga los posts de la tabla
+ 	*/
 	const loadPost = () =>
 		posts.slice(0, items).map(({ id, name, title, body }) => ({
 			id,
@@ -94,27 +104,38 @@ export const Posts = () => {
 			body,
 			actions: getButtons({ id, name, title, body })
 		}));
-
-	const sortPosts = (a, b) => a.id < b.id;
+	/*
+        Crea un nuevo modelo para insertar
+     */
 	const newPost = () => {
 		window.scrollTo(0, 0);
 
 		setForm({ ...form, active: true, header: 'Nuevo Post' });
 	};
 
+	/*
+    	Actualiza el value del formulario, depende del name
+ 	*/
 	const onChange = ({ target: { name, value } }) => {
 		const newForm = { ...form, [name]: value };
 		setForm(newForm);
 	};
-
+	/*
+    	Actualiza el modelo cuando se selecciona un item del select
+ 	*/
 	const changeSelect = item => {
 		const newForm = { ...form, user: item };
 		setForm(newForm);
 	};
-
+	/*
+    	Obtiene los usuarios para el select
+ 	*/
 	const getUsers = () =>
 		users.map(user => ({ value: user.id, label: user.name }));
 
+	/*
+    	Funciona para manejar el guardado de la informacion del formulario
+ 	*/
 	const onSave = async () => {
 		if (validForm()) {
 			const { post: id, user, title, body } = form;
@@ -129,11 +150,17 @@ export const Posts = () => {
 		}
 	};
 
+	/*
+     Limpia el formulario
+ 	*/
 	const onCancel = () => {
 		setForm(formData);
 		setError([]);
 	};
 
+	/*
+		Valida los datos del formulario
+	 */
 	const validForm = () => {
 		const { user, title, body } = form;
 		setError([]);
@@ -173,6 +200,9 @@ export const Posts = () => {
 	);
 };
 
+/*
+	Selector para obtener datos del store
+ */
 const selector = ({ App: { loading, posts, users } }) => ({
 	loading,
 	posts,
