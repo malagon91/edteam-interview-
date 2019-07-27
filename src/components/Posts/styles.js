@@ -5,6 +5,10 @@ export const PostStyles = styled('section')`
 	color: black;
 `;
 
+export const LabelWayPoint = styled('label')`
+	font-size: 20px;
+`;
+
 export const FormStyles = styled('div')`
 	padding: 1em;
 	font-size: 15px;

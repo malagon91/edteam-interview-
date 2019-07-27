@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { PostStyles } from './styles';
+import { LabelWayPoint, PostStyles } from './styles';
 import { Table } from '../common/Table';
 import { getPosts, insertPost } from '../../Actions/Posts';
 import { Loading } from '../common/Loading';
@@ -95,6 +95,9 @@ export const Posts = () => {
 			{loading ? <Loading /> : <Table data={loadPost()} />}
 			<Add title={'Agregar Post'} disabled={form.active} onClick={newPost} />
 			<Waypoint onLeave={loadMore} />
+			{loadPost().length < posts.length && (
+				<LabelWayPoint>Cargando...</LabelWayPoint>
+			)}
 		</PostStyles>
 	);
 };

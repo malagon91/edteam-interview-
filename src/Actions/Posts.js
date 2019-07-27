@@ -69,3 +69,65 @@ export const insertPost = post => {
 		}
 	};
 };
+
+export const updatePost = post => {
+	return async dispatch => {
+		try {
+			const { data, status } = await Api.put('posts', { ...post });
+			if (status === 200 || status === 201) {
+				toastr.success(
+					`Se inserto con exito el post, ${data.id}`,
+					`POST`,
+					optionsTo
+				);
+				return true;
+			} else {
+				toastr.error(
+					`Error al insertar el post, intentalo nuevamente`,
+					`Error`,
+					optionsTo
+				);
+				return false;
+			}
+		} catch (e) {
+			dispatch(setError(e));
+			toastr.error(
+				`Error al insertar el post, ${e.message}`,
+				`Error`,
+				optionsTo
+			);
+			return false;
+		}
+	};
+};
+
+export const deletePost = id => {
+	return async dispatch => {
+		try {
+			const { data, status } = await Api.delete('posts', { id });
+			if (status === 200 || status === 201) {
+				toastr.success(
+					`Se inserto con exito el post, ${data.id}`,
+					`POST`,
+					optionsTo
+				);
+				return true;
+			} else {
+				toastr.error(
+					`Error al insertar el post, intentalo nuevamente`,
+					`Error`,
+					optionsTo
+				);
+				return false;
+			}
+		} catch (e) {
+			dispatch(setError(e));
+			toastr.error(
+				`Error al insertar el post, ${e.message}`,
+				`Error`,
+				optionsTo
+			);
+			return false;
+		}
+	};
+};
