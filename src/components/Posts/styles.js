@@ -29,7 +29,7 @@ export const ColFormStyles = styled('div')`
 	textarea {
 		width: 100%;
 		margin-top: 5px;
-		font-size: 20px;
+		font-size: 15px;
 	}
 `;
 

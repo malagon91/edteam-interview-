@@ -38,3 +38,34 @@ export const getPosts = () => {
 		}
 	};
 };
+
+export const insertPost = post => {
+	return async dispatch => {
+		try {
+			const { data, status } = await Api.post('posts', { ...post });
+			if (status === 200 || status === 201) {
+				toastr.success(
+					`Se inserto con exito el post, ${data.id}`,
+					`POST`,
+					optionsTo
+				);
+				return true;
+			} else {
+				toastr.error(
+					`Error al insertar el post, intentalo nuevamente`,
+					`Error`,
+					optionsTo
+				);
+				return false;
+			}
+		} catch (e) {
+			dispatch(setError(e));
+			toastr.error(
+				`Error al insertar el post, ${e.message}`,
+				`Error`,
+				optionsTo
+			);
+			return false;
+		}
+	};
+};

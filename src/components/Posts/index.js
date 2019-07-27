@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { PostStyles } from './styles';
 import { Table } from '../common/Table';
-import { getPosts } from '../../Actions/Posts';
+import { getPosts, insertPost } from '../../Actions/Posts';
 import { Loading } from '../common/Loading';
 import { Waypoint } from 'react-waypoint';
 import { Add } from '../common/Add';
@@ -51,12 +51,12 @@ export const Posts = () => {
 	const getUsers = () =>
 		users.map(user => ({ value: user.id, label: user.name }));
 
-	const onSave = () => {
-		console.log('save');
+	const onSave = async () => {
 		if (validForm()) {
 			const { user, title, body } = form;
 			const postData = { userId: user.value, title, body };
-			console.log(postData);
+			const insert = await dispatch(insertPost(postData));
+			if (insert) setForm(FormData);
 		}
 	};
 	const onCancel = () => {
