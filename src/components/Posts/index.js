@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { LabelWayPoint, PostStyles, ActionButtonsStyles } from './styles';
 import { Table } from '../common/Table';
-import { getPosts, insertPost } from '../../Actions/Posts';
+import {
+	getPosts,
+	insertPost,
+	deletePost,
+	updatePost
+} from '../../Actions/Posts';
 import { Loading } from '../common/Loading';
 import { Waypoint } from 'react-waypoint';
 import { Add } from '../common/Add';
@@ -54,6 +59,7 @@ export const Posts = () => {
 					label: 'Si',
 					onClick: () => {
 						console.log(id);
+						dispatch(deletePost(id));
 					}
 				},
 				{
@@ -105,12 +111,18 @@ export const Posts = () => {
 
 	const onSave = async () => {
 		if (validForm()) {
-			const { user, title, body } = form;
+			const { post: id, user, title, body } = form;
 			const postData = { userId: user.value, title, body };
-			const insert = await dispatch(insertPost(postData));
-			if (insert) setForm(FormData);
+			if (id === 0) {
+				const insert = await dispatch(insertPost(postData));
+				if (insert) setForm(formData);
+			} else {
+				const updateConfirm = await dispatch(updatePost({ ...postData, id }));
+				if (updateConfirm) setForm(formData);
+			}
 		}
 	};
+
 	const onCancel = () => {
 		setForm(formData);
 	};

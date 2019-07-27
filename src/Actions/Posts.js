@@ -4,7 +4,7 @@ import idx from 'idx';
 import { INIT_LOAD, GET_POSTS, ERROR_LOAD, GET_USERS } from './ActionTypes';
 const optionsTo = {
 	progressBar: true,
-	positionClass: 'toast-bottom-right'
+	positionClass: 'toast-top-right'
 };
 
 export const initLoad = () => ({ type: INIT_LOAD });
@@ -46,7 +46,7 @@ export const insertPost = post => {
 			if (status === 200 || status === 201) {
 				toastr.success(
 					`Se inserto con exito el post, ${data.id}`,
-					`POST`,
+					`Nuevo`,
 					optionsTo
 				);
 				return true;
@@ -73,17 +73,17 @@ export const insertPost = post => {
 export const updatePost = post => {
 	return async dispatch => {
 		try {
-			const { data, status } = await Api.put('posts', { ...post });
+			const { data, status } = await Api.put(`posts/${post.id}`, { ...post });
 			if (status === 200 || status === 201) {
 				toastr.success(
-					`Se inserto con exito el post, ${data.id}`,
-					`POST`,
+					`Se actualizo con exito el post, ${data.id}`,
+					`Actualización`,
 					optionsTo
 				);
 				return true;
 			} else {
 				toastr.error(
-					`Error al insertar el post, intentalo nuevamente`,
+					`Error al actualizar el post, intentalo nuevamente`,
 					`Error`,
 					optionsTo
 				);
@@ -92,7 +92,7 @@ export const updatePost = post => {
 		} catch (e) {
 			dispatch(setError(e));
 			toastr.error(
-				`Error al insertar el post, ${e.message}`,
+				`Error al actualizar el post, ${e.message}`,
 				`Error`,
 				optionsTo
 			);
@@ -104,17 +104,17 @@ export const updatePost = post => {
 export const deletePost = id => {
 	return async dispatch => {
 		try {
-			const { data, status } = await Api.delete('posts', { id });
+			const { status } = await Api.delete(`posts/${id}`);
 			if (status === 200 || status === 201) {
 				toastr.success(
-					`Se inserto con exito el post, ${data.id}`,
-					`POST`,
+					`Se elimino con exito el post, ${id}`,
+					`Eliminado`,
 					optionsTo
 				);
 				return true;
 			} else {
 				toastr.error(
-					`Error al insertar el post, intentalo nuevamente`,
+					`Error al eliminar el post, intentalo nuevamente`,
 					`Error`,
 					optionsTo
 				);
@@ -123,7 +123,7 @@ export const deletePost = id => {
 		} catch (e) {
 			dispatch(setError(e));
 			toastr.error(
-				`Error al insertar el post, ${e.message}`,
+				`Error al eliminar el post, ${e.message}`,
 				`Error`,
 				optionsTo
 			);
