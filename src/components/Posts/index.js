@@ -115,16 +115,17 @@ export const Posts = () => {
 			const postData = { userId: user.value, title, body };
 			if (id === 0) {
 				const insert = await dispatch(insertPost(postData));
-				if (insert) setForm(formData);
+				if (insert) onCancel();
 			} else {
 				const updateConfirm = await dispatch(updatePost({ ...postData, id }));
-				if (updateConfirm) setForm(formData);
+				if (updateConfirm) onCancel();
 			}
 		}
 	};
 
 	const onCancel = () => {
 		setForm(formData);
+		setError([]);
 	};
 
 	const validForm = () => {
