@@ -1,6 +1,11 @@
 import React from 'react';
 import { MyInfoStyles, LinkEmail } from './styles';
 
+/*
+ * MyInfo
+ * return component
+ *
+ * */
 export const MyInfo = () => (
 	<MyInfoStyles>
 		<h2>Miguel Malagon</h2>

@@ -3,6 +3,11 @@ import { useDispatch } from 'react-redux';
 import { SideBarStyles, AnchorStyles } from './styles';
 import { push } from 'connected-react-router';
 
+/*
+ * Componente de menu
+ * return component
+ *
+ * */
 export const SideBar = () => {
 	const dispatch = useDispatch();
 	const goTo = url => {

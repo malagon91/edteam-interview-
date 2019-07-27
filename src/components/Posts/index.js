@@ -24,6 +24,11 @@ const formData = {
 	body: ''
 };
 
+/*
+ * Posts
+ * return component
+ *
+ * */
 export const Posts = () => {
 	const [items, setItems] = useState(10);
 	const [error, setError] = useState([]);

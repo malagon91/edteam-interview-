@@ -1,6 +1,10 @@
 import React from 'react';
 import { AddStyles } from './styles';
-
+/*
+ * Componente generico para boton de agregar
+ * return component
+ *
+ * */
 export const Add = ({ onClick, title, disabled = false }) => (
 	<AddStyles>
 		<button

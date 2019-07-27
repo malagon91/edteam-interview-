@@ -3,7 +3,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
 import _ from 'lodash';
 import App from '../App';
-import configureStore from '../Store/configStore';
+import configureStore from '../Store';
 
 global.__CLIENT__ = true;
 global.__DEVELOPMENT__ = process.env.NODE_ENV !== 'production';

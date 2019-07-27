@@ -4,6 +4,11 @@ import { TableHeader } from './Header';
 import { Row } from './Row';
 import { Loading } from '../Loading';
 
+/*
+ * Componente generico para una tabla
+ * return component
+ *
+ * */
 export const Table = ({ data }) => {
 	const getHeaders = index => Object.keys(data[index]);
 

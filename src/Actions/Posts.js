@@ -1,3 +1,7 @@
+/*
+	Posts Actions and helpers
+ */
+
 import Api from '../Api';
 import toastr from 'toastr';
 import idx from 'idx';
@@ -6,12 +10,16 @@ const optionsTo = {
 	progressBar: true,
 	positionClass: 'toast-top-right'
 };
-
+//Setters on redux
 export const initLoad = () => ({ type: INIT_LOAD });
 export const setPosts = posts => ({ type: GET_POSTS, payload: posts });
 export const setUsers = users => ({ type: GET_USERS, payload: users });
 export const setError = error => ({ type: ERROR_LOAD, payload: error });
 
+/*
+	Description: Llama a la api para obtener los posts
+	Return: Nada
+*/
 export const getPosts = () => {
 	return async dispatch => {
 		try {
@@ -39,6 +47,10 @@ export const getPosts = () => {
 	};
 };
 
+/*
+	Description: Llama a la api para insertar los posts
+	Return: promise(bool)
+*/
 export const insertPost = post => {
 	return async (dispatch, getState) => {
 		try {
@@ -75,6 +87,10 @@ export const insertPost = post => {
 	};
 };
 
+/*
+	Description: Llama a la api para actualizar los posts
+	Return: promise(bool)
+*/
 export const updatePost = post => {
 	return async (dispatch, getState) => {
 		try {
@@ -111,6 +127,10 @@ export const updatePost = post => {
 	};
 };
 
+/*
+	Description: Maneja la informacion en redux para update
+	Return: array
+*/
 const handleUpdate = (item, posts, users) => {
 	const user = users.filter(user => user.id === item.userId);
 	const name = user.length > 0 ? user[0].username : 'NA';
@@ -119,8 +139,15 @@ const handleUpdate = (item, posts, users) => {
 	return [...filterPost, obj];
 };
 
+/*
+	Description: Sort Generico por object.id
+*/
 const sortPosts = (a, b) => a.id - b.id;
 
+/*
+	Description: Maneja la informacion en redux para insert
+	Return: array
+*/
 const handleInsert = (item, posts, users) => {
 	const user = users.filter(user => user.id === item.userId);
 	const name = user.length > 0 ? user[0].username : 'NA';
@@ -129,6 +156,10 @@ const handleInsert = (item, posts, users) => {
 	return [...posts, obj];
 };
 
+/*
+	Description: Llama a la api para eliminar los posts
+	Return: promise(bool)
+*/
 export const deletePost = id => {
 	return async (dispatch, getState) => {
 		try {
@@ -165,4 +196,8 @@ export const deletePost = id => {
 	};
 };
 
+/*
+	Description: Maneja la informacion en redux para delete
+	Return: array
+*/
 const handleDelete = (id, posts) => posts.filter(post => post.id !== id);
