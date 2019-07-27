@@ -7,7 +7,7 @@ import { Loading } from '../common/Loading';
 import { Waypoint } from 'react-waypoint';
 import { Add } from '../common/Add';
 import { Form } from './form';
-
+import idx from 'idx';
 const formData = {
 	active: false,
 	header: '',
@@ -28,10 +28,31 @@ export const Posts = () => {
 		setItems(items + 10);
 	};
 
+	const onUpdate = ({ id, title, body }) => {
+		window.scrollTo(0, 0);
+		const { userId } = idx(posts.filter(pos => pos.id === id), _ => _[0]) || {};
+		const { id: uId, name: uName } =
+			idx(users.filter(user => user.id === userId), _ => _[0]) || {};
+		const user = { value: uId, label: uName };
+		const model = {
+			post: id,
+			user,
+			title,
+			body
+		};
+		setForm({ ...form, active: true, header: 'Actualiza el Post', ...model });
+	};
+
+	const onDelete = item => {};
+
 	const getButtons = item => (
 		<ActionButtonsStyles>
-			<button className="update">Actualizar</button>
-			<button className="delete">Eliminar</button>
+			<button className="update" onClick={() => onUpdate(item)}>
+				Actualizar
+			</button>
+			<button className="delete" onClick={() => onDelete(item)}>
+				Eliminar
+			</button>
 		</ActionButtonsStyles>
 	);
 
@@ -45,6 +66,8 @@ export const Posts = () => {
 		}));
 
 	const newPost = () => {
+		window.scrollTo(0, 0);
+
 		setForm({ ...form, active: true, header: 'Nuevo Post' });
 	};
 
@@ -55,7 +78,6 @@ export const Posts = () => {
 
 	const changeSelect = item => {
 		const newForm = { ...form, user: item };
-		console.log(newForm);
 		setForm(newForm);
 	};
 
