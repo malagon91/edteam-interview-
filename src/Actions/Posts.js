@@ -40,10 +40,15 @@ export const getPosts = () => {
 };
 
 export const insertPost = post => {
-	return async dispatch => {
+	return async (dispatch, getState) => {
 		try {
 			const { data, status } = await Api.post('posts', { ...post });
 			if (status === 200 || status === 201) {
+				const {
+					App: { posts, users }
+				} = getState();
+				const newPosts = handleInsert(data, posts, users);
+				dispatch(setPosts(newPosts));
 				toastr.success(
 					`Se inserto con exito el post, ${data.id}`,
 					`Nuevo`,
@@ -71,10 +76,15 @@ export const insertPost = post => {
 };
 
 export const updatePost = post => {
-	return async dispatch => {
+	return async (dispatch, getState) => {
 		try {
 			const { data, status } = await Api.put(`posts/${post.id}`, { ...post });
 			if (status === 200 || status === 201) {
+				const {
+					App: { posts, users }
+				} = getState();
+				const newPosts = handleUpdate(data, posts, users);
+				dispatch(setPosts(newPosts.sort(sortPosts)));
 				toastr.success(
 					`Se actualizo con exito el post, ${data.id}`,
 					`Actualización`,
@@ -101,11 +111,34 @@ export const updatePost = post => {
 	};
 };
 
+const handleUpdate = (item, posts, users) => {
+	const user = users.filter(user => user.id === item.userId);
+	const name = user.length > 0 ? user[0].username : 'NA';
+	const obj = { ...item, name };
+	const filterPost = posts.filter(post => post.id !== item.id);
+	return [...filterPost, obj];
+};
+
+const sortPosts = (a, b) => a.id - b.id;
+
+const handleInsert = (item, posts, users) => {
+	const user = users.filter(user => user.id === item.userId);
+	const name = user.length > 0 ? user[0].username : 'NA';
+	const newId = posts[posts.length - 1].id + 1;
+	const obj = { ...item, id: newId, name };
+	return [...posts, obj];
+};
+
 export const deletePost = id => {
-	return async dispatch => {
+	return async (dispatch, getState) => {
 		try {
 			const { status } = await Api.delete(`posts/${id}`);
 			if (status === 200 || status === 201) {
+				const {
+					App: { posts }
+				} = getState();
+				const newPosts = handleDelete(id, posts);
+				dispatch(setPosts(newPosts));
 				toastr.success(
 					`Se elimino con exito el post, ${id}`,
 					`Eliminado`,
@@ -131,3 +164,5 @@ export const deletePost = id => {
 		}
 	};
 };
+
+const handleDelete = (id, posts) => posts.filter(post => post.id !== id);

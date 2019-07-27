@@ -90,6 +90,7 @@ export const Posts = () => {
 			actions: getButtons({ id, name, title, body })
 		}));
 
+	const sortPosts = (a, b) => a.id < b.id;
 	const newPost = () => {
 		window.scrollTo(0, 0);
 
