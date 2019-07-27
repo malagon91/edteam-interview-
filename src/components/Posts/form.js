@@ -5,14 +5,18 @@ import {
 	ColFormStyles,
 	RowFormStyles,
 	ButtonStyles,
-	ButtonsContainer
+	ButtonsContainer,
+	ErrorsContainer
 } from './styles';
 
 export const Form = ({
 	data: { header, title, user, post, body },
 	onChange,
 	changeSelect,
-	users
+	users,
+	onCancel,
+	onSave,
+	error
 }) => (
 	<FormStyles>
 		<h3>{header}</h3>
@@ -34,8 +38,9 @@ export const Form = ({
 		</RowFormStyles>
 		<RowFormStyles>
 			<ColFormStyles>
+				<br />
+				<br />
 				<label>Titulo</label>
-
 				<input type="text" name="title" onChange={onChange} value={title} />
 			</ColFormStyles>
 			<ColFormStyles area>
@@ -50,8 +55,18 @@ export const Form = ({
 			</ColFormStyles>
 		</RowFormStyles>
 		<ButtonsContainer>
-			<ButtonStyles>Cancelar</ButtonStyles>
-			<ButtonStyles type="save">Guardar</ButtonStyles>
+			<ButtonStyles onClick={onCancel}>Cancelar</ButtonStyles>
+			<ButtonStyles onClick={onSave} type="save">
+				Guardar
+			</ButtonStyles>
 		</ButtonsContainer>
+		{error.length > 0 && (
+			<ErrorsContainer>
+				<h3>UPSS! Algo salio mal</h3>
+				{error.map((er, index) => (
+					<p key={index}>{er}</p>
+				))}
+			</ErrorsContainer>
+		)}
 	</FormStyles>
 );

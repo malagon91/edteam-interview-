@@ -19,6 +19,7 @@ const formData = {
 
 export const Posts = () => {
 	const [items, setItems] = useState(10);
+	const [error, setError] = useState([]);
 	const [form, setForm] = useState(formData);
 	const dispatch = useDispatch();
 	const { loading, posts, users } = useSelector(selector);
@@ -41,14 +42,37 @@ export const Posts = () => {
 		setForm(newForm);
 	};
 
-	const changeSelect = ({ value }) => {
-		const newForm = { ...form, user: value };
+	const changeSelect = item => {
+		const newForm = { ...form, user: item };
 		console.log(newForm);
 		setForm(newForm);
 	};
 
 	const getUsers = () =>
 		users.map(user => ({ value: user.id, label: user.name }));
+
+	const onSave = () => {
+		console.log('save');
+		if (validForm()) {
+			const { user, title, body } = form;
+			const postData = { userId: user.value, title, body };
+			console.log(postData);
+		}
+	};
+	const onCancel = () => {
+		setForm(formData);
+	};
+
+	const validForm = () => {
+		const { user, title, body } = form;
+		setError([]);
+		let errors = [];
+		if (!user) errors.push('Ingresa el usuario');
+		if (title.length <= 0) errors.push('Ingresa el titulo');
+		if (body.length <= 0) errors.push('Ingresa el post');
+		setError(errors);
+		return errors.length === 0;
+	};
 
 	useEffect(() => {
 		dispatch(getPosts());
@@ -62,6 +86,9 @@ export const Posts = () => {
 					onChange={onChange}
 					changeSelect={changeSelect}
 					users={getUsers()}
+					onCancel={onCancel}
+					onSave={onSave}
+					error={error}
 				/>
 			)}
 			<h3>POSTS</h3>
