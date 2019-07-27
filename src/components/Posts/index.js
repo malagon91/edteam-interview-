@@ -8,6 +8,8 @@ import { Waypoint } from 'react-waypoint';
 import { Add } from '../common/Add';
 import { Form } from './form';
 import idx from 'idx';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+
 const formData = {
 	active: false,
 	header: '',
@@ -43,7 +45,24 @@ export const Posts = () => {
 		setForm({ ...form, active: true, header: 'Actualiza el Post', ...model });
 	};
 
-	const onDelete = item => {};
+	const onDelete = ({ id }) => {
+		confirmAlert({
+			title: 'Eliminar el post',
+			message: `Estas seguro de eliminar el post ${id}`,
+			buttons: [
+				{
+					label: 'Si',
+					onClick: () => {
+						console.log(id);
+					}
+				},
+				{
+					label: 'No',
+					onClick: () => {}
+				}
+			]
+		});
+	};
 
 	const getButtons = item => (
 		<ActionButtonsStyles>
