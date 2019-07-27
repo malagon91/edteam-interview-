@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const SideBarStyles = styled('aside')`
-	flex: 0 1 300px;
+	flex: 0 1 200px;
 	color: black;
 `;
 

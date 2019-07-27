@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { LabelWayPoint, PostStyles } from './styles';
+import { LabelWayPoint, PostStyles, ActionButtonsStyles } from './styles';
 import { Table } from '../common/Table';
 import { getPosts, insertPost } from '../../Actions/Posts';
 import { Loading } from '../common/Loading';
@@ -28,10 +28,21 @@ export const Posts = () => {
 		setItems(items + 10);
 	};
 
+	const getButtons = item => (
+		<ActionButtonsStyles>
+			<button className="update">Actualizar</button>
+			<button className="delete">Eliminar</button>
+		</ActionButtonsStyles>
+	);
+
 	const loadPost = () =>
-		posts
-			.slice(0, items)
-			.map(({ id, name, title, body }) => ({ id, user: name, title, body }));
+		posts.slice(0, items).map(({ id, name, title, body }) => ({
+			id,
+			user: name,
+			title,
+			body,
+			actions: getButtons({ id, name, title, body })
+		}));
 
 	const newPost = () => {
 		setForm({ ...form, active: true, header: 'Nuevo Post' });

@@ -22,14 +22,14 @@ export const RowHeaderStyles = styled('div')`
 	background: #1976d2;
 	color: white;
 	border-color: #1565c0;
-	width: calc(100% / 4);
+	width: calc(100% / 5);
 	text-align: center;
 	padding: 0.5em 0.5em;
 	border-right: solid 1px #d9d9d9;
 	border-bottom: solid 1px #d9d9d9;
 	@media screen and (min-width: 767px) {
 		border-bottom: solid 1px;
-		width: calc(100% / 4);
+		width: calc(100% / 5);
 	}
 	@media screen and (max-width: 430px) {
 		border-bottom: 0;
@@ -51,13 +51,13 @@ export const RowStyles = styled('div')`
 `;
 export const ColumnStyles = styled('div')`
 	box-sizing: border-box;
-	width: calc(100% / 4);
+	width: calc(100% / 5);
 	text-align: center;
 	padding: 0.5em 0.5em;
 	border-right: solid 1px #d9d9d9;
 	border-bottom: solid 1px #d9d9d9;
 	@media screen and (min-width: 767px) {
-		width: calc(100% / 4);
+		width: calc(100% / 5);
 	}
 	@media screen and (max-width: 430px) {
 		border-bottom: 0;

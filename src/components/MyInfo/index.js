@@ -9,7 +9,7 @@ export const MyInfo = () => (
 				target="_blank"
 				href="https://github.com/malagon91/edteam-interview-"
 			>
-				https://github.com/malagon91
+				Revisa mi codigo en Github ;)
 			</LinkEmail>
 		</h2>
 	</MyInfoStyles>

@@ -14,6 +14,55 @@ export const FormStyles = styled('div')`
 	font-size: 15px;
 `;
 
+export const ActionButtonsStyles = styled('div')`
+	font-size: 15px;
+	.update {
+		color: #21d84b;
+		font-size: 1em;
+		border-width: 2px;
+		border-style: solid;
+		border-color: #21d84b;
+		border-image: initial;
+		background: white;
+		padding: 0.25em 1em;
+		cursor: pointer;
+		margin-left: 20px;
+		width: 100px;
+		height: 40px;
+		margin-bottom: 5px;
+		&:focus {
+			outline: none;
+		}
+		&:hover {
+			background-color: #21d84b;
+			color: white;
+			border-color: white;
+		}
+	}
+	.delete {
+		color: #f81e1e;
+		font-size: 1em;
+		border-width: 2px;
+		border-style: solid;
+		border-color: #f81e1e;
+		border-image: initial;
+		background: white;
+		padding: 0.25em 1em;
+		cursor: pointer;
+		margin-left: 20px;
+		width: 100px;
+		height: 40px;
+		&:focus {
+			outline: none;
+		}
+		&:hover {
+			background-color: #f81e1e;
+			color: white;
+			border-color: white;
+		}
+	}
+`;
+
 export const RowFormStyles = styled('div')`
 	display: flex;
 `;
